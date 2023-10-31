@@ -1,5 +1,19 @@
 local enchant_bars = {}
 
+function enchant_bars.check_bars_quest_dialogue(self, other, message)
+    local is_self_found = other:IsSelfFound() == 1 or other:IsSoloOnly() == 1;
+	if(is_self_found) then
+		if(message:findi("enchantments")) then
+			if (other:GetLevel() >= 8) then
+				-- TODO: Include more dialogue once gold bars and other bars are supported
+				self:Say("You wish to explore the deeper mysteries of metallurgy and magic? A noble path. The enchantment of metal bars is a delicate art. Present me with 5 platinum pieces, and your silver bar, and we shall begin the process of its transformation.");
+			else
+				self:Say("You are a bit too inexperienced to be dabbling in such magic, aren't you?");
+			end
+		end
+	end
+end
+
 function enchant_bars.check_for_bars_to_enchant(item_lib, self, other, trade)
 
     local is_self_found = other:IsSelfFound() == 1 or other:IsSoloOnly() == 1;

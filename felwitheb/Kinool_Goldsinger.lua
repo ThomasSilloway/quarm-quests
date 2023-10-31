@@ -15,17 +15,8 @@ function event_say(e)
   		e.self:Say("The remaining components are the Trueshot longbow and a treant heart. There will also be the guild donation in the amount of 3000 gold coins. These and the [fairie gold dust] will merit a ranger the Rain Caller enchanted bow.");
 	end
 
-	local is_self_found = e.other:IsSelfFound() == 1 or e.other:IsSoloOnly() == 1;
-	if(is_self_found) then
-		if(e.message:findi("enchantments")) then
-			if (e.other:GetLevel() >= 8) then
-				-- TODO: Include more dialogue once gold bars and other bars are supported
-				e.self:Say("You wish to explore the deeper mysteries of metallurgy and magic? A noble path. The enchantment of metal bars is a delicate art. Present me with 5 platinum pieces, and your silver bar, and we shall begin the process of its transformation.");
-			else
-				e.self:Say("You are a bit too inexperienced to be dabbling in such magic, aren't you?");
-			end
-		end
-	end
+	local enchant_bars_lib = require("self_found_enchant_bars");
+    enchant_bars_lib.check_bars_quest_dialogue(e.self, e.other, e.message);
 end
 
 function event_trade(e)
