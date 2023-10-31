@@ -7,6 +7,8 @@ function event_say(e)
 		e.self:Say("The ink is the blood of a dark scribe. Tempt him and give him this vial. He should cooperate.");
 		e.other:SummonCursorItem(10626); -- Item: Empty Ink Vial
 	end
+	local enchant_bars_lib = require("self_found_enchant_bars");
+    enchant_bars_lib.check_bars_quest_dialogue(e.self, e.other, e.message);
 end
 
 function event_trade(e)
@@ -20,7 +22,11 @@ function event_trade(e)
 		e.other:Faction(e.self,230,5); --Corrupt Qeynos Guards
 		e.other:QuestReward(e.self,0,0,0,0,13596,20); --Dirty Purple Robe*
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	local enchant_bars_lib = require("self_found_enchant_bars");
+
+	enchant_bars_lib.check_for_bars_to_enchant(item_lib, e.self, e.other, e.trade);
+
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF Zone: qcat ID: 45082 NPC: Reania_Jukle
