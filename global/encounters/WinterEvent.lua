@@ -30,3 +30,4 @@ function event_encounter_load(e)
         eq.zone_emote(15, "No mobs found to spawn the gnome.")
     end
 end
+
