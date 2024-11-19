@@ -26,8 +26,12 @@ function event_encounter_load(e)
     if randomMob then
         eq.spawn2(gnome, 0, 0, randomMob:GetX(), randomMob:GetY(), randomMob:GetZ(), randomMob:GetHeading())
         eq.zone_emote(15, "A gnome has appeared at " .. randomMob:GetX() .. ", " .. randomMob:GetY() .. ", " .. randomMob:GetZ())
+        eq.debug("A gnome has appeared at " .. randomMob:GetX() .. ", " .. randomMob:GetY() .. ", " .. randomMob:GetZ())
     else
         eq.zone_emote(15, "No mobs found to spawn the gnome.")
+        eq.debug("No mobs found to spawn the gnome")
     end
+
+    eq.debug("Winter event loaded")
 end
 
